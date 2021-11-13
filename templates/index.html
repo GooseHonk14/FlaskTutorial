@@ -1,0 +1,31 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Page</title>
+</head>
+<body>
+    Hello world 2 his is just gon be run as text, like a python string, so thats pretty cool
+    This used to be things that existed but we don't care about it anymore?
+-->
+{% extends 'base.html' %}. <!--it isn't colorful :(   -->
+
+{% block head %}   <!--Our own code will go here and it will build off of base.html with its own styling...-->
+
+{% endblock %}
+
+
+{% block body %} <!--And content! (probably)-->
+<h1>Template</h1> <!--This should now appear on screen-->
+{% endblock %}
+<!--
+    What's fun about this is while it seemed like a lot of work,
+    this is all we have to do now for the rest of the website,
+    assuming it follows the format of base.html.
+    This means we can import things like stylesheets into 
+    base.html and it will appear on every page.
+    Nifty
+-->

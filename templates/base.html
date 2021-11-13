@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<!--This document is going to be the "skeleton" of the page, and which each page will build off of-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"">  <!--Links our stylesheet to this file via flask-->
+    {% block head %}{% endblock %}  <!--This tells flask that our own code will go here-->
+</head>
+<body>
+    {% block body %}{% endblock %} <!--Same thing? Maybe?-->
+</body>
+</html>

@@ -1,0 +1,22 @@
+# install flask
+pip3 install flask 
+#install something else?
+pip3 install flask_sqlalchemy
+________________________
+#Make a new file.py
+
+#import flask into python
+from flask import Flask
+
+
+
+#Do things in python for a little bit
+
+#Make some folders: static, templates
+#Put index.html inside of templates to be referenced later
+#Also base.html for the skeleton of the website
+
+#Things within {%  %} are flask related things and they exist so thats pretty cool
+
+#Puts some folders in the folders
+#static gets css and css gets main.css
