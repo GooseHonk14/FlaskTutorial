@@ -20,3 +20,11 @@ from flask import Flask
 
 #Puts some folders in the folders
 #static gets css and css gets main.css
+
+
+
+
+#(1) Open python3
+from app import db #Imports db into terminal
+db.create_all() #Creates database: Should pop up in files
+

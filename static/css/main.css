@@ -3,3 +3,15 @@ body {
     margin:0;
     font-family:sans-serif;
 }
+table, td, th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width:228px;
+}
+.content{
+    position:relative;
+    top:30px;
+    left:40%;
+    margin-right:auto;
+    margin-left:auto;
+}

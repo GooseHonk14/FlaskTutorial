@@ -11,15 +11,43 @@
     Hello world 2 his is just gon be run as text, like a python string, so thats pretty cool
     This used to be things that existed but we don't care about it anymore?
 -->
-{% extends 'base.html' %}. <!--it isn't colorful :(   -->
+{% extends 'base.html' %}. <!--Tells us to base this off of base.html   -->
 
 {% block head %}   <!--Our own code will go here and it will build off of base.html with its own styling...-->
+<title>Task Master</title>
 
 {% endblock %}
 
 
 {% block body %} <!--And content! (probably)-->
-<h1>Template</h1> <!--This should now appear on screen-->
+<div class="content"> <!--Naming it content to come back later and make it pretty......-->
+    <h1>Task Master</h1> <!--A heading Wowoowwowowow-->
+
+    <table> <!--Table tag because that exists-->
+        <tr> <!--Every tr is a individual line-->
+            <th>Task</th> <!--Table Header Tag-->
+            <th>Added</th> <!--All of this will appear on one line-->
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>
+                <a href="">Delete</a>  <!--These will link to something at some point, presumably a python function...-->
+                <br>
+                <a href="">Update</a>
+            </td>
+        </tr>
+    </table>
+
+    <form action="/template" method="POST"> <!--The '/templates' refers to the webpage i want to take the input, i think. Post method allows us to send data-->
+        <input type="text" name="content" id="content"> <!--This gives us a text box that we can take data from, id "content" allows us to reference this on a different page, namely python-->
+        <input type="submit" value="Add Task"> <!--A button, pretty much. The value is what the button will say on it.-->
+    </form>
+
+
+</div>
+<!--<h1>Template</h1> This should now appear on screen but we don't care anymore-->
 {% endblock %}
 <!--
     What's fun about this is while it seemed like a lot of work,
