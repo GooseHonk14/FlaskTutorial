@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request  #install flask, and render_template, which will allow for html files to be read, url_for allows stylesheets to be linked, Request allows for things to be requested from the webpage 
+from flask import Flask, render_template, url_for, request, redirect  #install flask, and render_template, which will allow for html files to be read, url_for allows stylesheets to be linked, Request allows for things to be requested from the webpage, redirect allows us to send the user to the updated webpage
 from flask_sqlalchemy import SQLAlchemy #import something for databases?
 from datetime import datetime #Allows for the date to be imported
 
@@ -26,12 +26,34 @@ def index():  #Immediately put the function you want to run on the opeing of the
 def template():
     if request.method == 'POST':  #REQUEST needs an import, remember that
         task_content = request.form['content']  #This is setting a variable equal to what is inputed into the form with id 'content', found in index.html
-        new_task = Todo(content=task_content)
+        new_task = Todo(content=task_content) #Creates a new task variable that is equal to the model we made in class Todo
 
-    else:
-        return render_template('index.html') #This will render a template on the page. If we didn't name the template folder "templates" i think we would have to specify where this file was coming from, but its just easier to name the folder templates
-        #^Put the render template here so that if nothing is happening, then it will just display the webpage
+        try:
+            db.session.add(new_task) #Adds new task to the database
+            db.session.commit() #Saves the new task to the database
+            return redirect('https://5000-purple-mongoose-i5x1ay3m.ws-us18.gitpod.io/template') #Sends the information to the desired webpage, in this case, template
+                    #####THIS NEEDS TO BE CHANGED TO MATCH THE CURRENT URL BECAUSE GITPOD SUCKS AND IT REDIRECTS TO LOCALHOST:5000
+        except:
+            return "There was an issue adding your task."
 
+    else: #This else will always run, since when the tab was originally loaded POST was false, and then after the button was pressed and the TRUE was run, POST will be false again.
+        tasks = Todo.query.order_by(Todo.date_created).all()  #This takes all the tasks in the database and orders them by date_created.
+                                                     #^The all selector grabs all the things in the database, you could use first and it would only grab the first item and put it into the variable.
+        return render_template('index.html', tasks=tasks) #This will render a template on the page. If we didn't name the template folder "templates" i think we would have to specify where this file was coming from, but its just easier to name the folder templates
+        #^Put the render template here so that  #Tasks=tasks just updates that into the webpage
+        # if nothing is happening, then it will just display the webpage
+
+
+
+@app.route('/delete/<int:id>') #Making a new page for deleting things, url with <something> has a variable "something" in it. Since we want the variable to be an integer we put int:id.
+def delete(id): #Passing in id from the url
+     task_to_delete = Todo.query.get_or_404(id) #Getting something from the database, if it doesn't exist it will 404
+     try:
+        db.session.delete(task_to_delete)
+        db.session.commit()
+        return redirect('https://5000-purple-mongoose-i5x1ay3m.ws-us18.gitpod.io/template')  
+     except:
+         return "There was a problem deleting your task."
 
 
 

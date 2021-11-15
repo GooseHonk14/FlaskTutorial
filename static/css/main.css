@@ -15,3 +15,6 @@ table, td, th {
     margin-right:auto;
     margin-left:auto;
 }
+form {
+    margin-top:10px;
+}

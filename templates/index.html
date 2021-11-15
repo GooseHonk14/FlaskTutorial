@@ -29,15 +29,18 @@
             <th>Added</th> <!--All of this will appear on one line-->
             <th>Actions</th>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td>
-                <a href="">Delete</a>  <!--These will link to something at some point, presumably a python function...-->
-                <br>
-                <a href="">Update</a>
-            </td>
-        </tr>
+        {% for task in tasks %} <!--This will run for every task in the database, also we don't need : for some reason-->
+            <tr>
+                <td>{{ task.content }}</td> <!--Double Curly braces are for variables from python-->
+                <td>{{ task.date_created.date() }}</td> <!--date_created is a variable, .date() makes it return just the date.-->
+                <td>
+                    <a href="https://5000-purple-mongoose-i5x1ay3m.ws-us18.gitpod.io/delete/{{task.id}}">Delete</a>  <!--This link leads to the delete function, with task.id as the task we hit delete on.-->
+                            <!--GITPOD SUCKS SO WE NEED TO UPDATE THIS LINK-->
+                    <br>
+                    <a href="">Update</a>
+                </td>
+            </tr>
+        {% endfor %} <!--Since indenting is jacked in html, we have to specify the end of the for loop.-->
     </table>
 
     <form action="/template" method="POST"> <!--The '/templates' refers to the webpage i want to take the input, i think. Post method allows us to send data-->
