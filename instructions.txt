@@ -16,7 +16,7 @@ from flask import Flask
 #Put index.html inside of templates to be referenced later
 #Also base.html for the skeleton of the website
 
-#Things within {%  %} are flask related things and they exist so thats pretty cool
+#Things within {%  %} are python in html so thats pretty cool
 
 #Puts some folders in the folders
 #static gets css and css gets main.css

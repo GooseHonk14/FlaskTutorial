@@ -23,6 +23,9 @@
 <div class="content"> <!--Naming it content to come back later and make it pretty......-->
     <h1>Task Master</h1> <!--A heading Wowoowwowowow-->
 
+    {% if tasks|length < 1 %}  <!-- | is a syntax in whatever this language is, and length returns the number of items in the list.  -->
+    <h4>There are no tasks. Create one below!</h4> <!--This will show only when there are 0 tasks.-->
+    {% else %}
     <table> <!--Table tag because that exists-->
         <tr> <!--Every tr is a individual line-->
             <th>Task</th> <!--Table Header Tag-->
@@ -34,16 +37,17 @@
                 <td>{{ task.content }}</td> <!--Double Curly braces are for variables from python-->
                 <td>{{ task.date_created.date() }}</td> <!--date_created is a variable, .date() makes it return just the date.-->
                 <td>
-                    <a href="https://5000-purple-mongoose-i5x1ay3m.ws-us18.gitpod.io/delete/{{task.id}}">Delete</a>  <!--This link leads to the delete function, with task.id as the task we hit delete on.-->
+                    <a href="https://5000-amaranth-guan-g3tpf7y2.ws-us18.gitpod.io/delete/{{task.id}}">Delete</a>  <!--This link leads to the delete function, with task.id as the task we hit delete on.-->
                             <!--GITPOD SUCKS SO WE NEED TO UPDATE THIS LINK-->
                     <br>
-                    <a href="">Update</a>
+                    <a href="https://5000-amaranth-guan-g3tpf7y2.ws-us18.gitpod.io/update/{{task.id}}">Update</a>
                 </td>
             </tr>
         {% endfor %} <!--Since indenting is jacked in html, we have to specify the end of the for loop.-->
     </table>
+    {% endif %} <!--Ends our if statement-->
 
-    <form action="/template" method="POST"> <!--The '/templates' refers to the webpage i want to take the input, i think. Post method allows us to send data-->
+    <form action="/template" method="POST"> <!--The '/template' refers to the webpage i want to take the input, i think. Post method allows us to send data-->
         <input type="text" name="content" id="content"> <!--This gives us a text box that we can take data from, id "content" allows us to reference this on a different page, namely python-->
         <input type="submit" value="Add Task"> <!--A button, pretty much. The value is what the button will say on it.-->
     </form>

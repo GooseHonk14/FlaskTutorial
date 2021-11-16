@@ -31,7 +31,7 @@ def template():
         try:
             db.session.add(new_task) #Adds new task to the database
             db.session.commit() #Saves the new task to the database
-            return redirect('https://5000-purple-mongoose-i5x1ay3m.ws-us18.gitpod.io/template') #Sends the information to the desired webpage, in this case, template
+            return redirect('https://5000-amaranth-guan-g3tpf7y2.ws-us18.gitpod.io/template') #Sends the information to the desired webpage, in this case, template
                     #####THIS NEEDS TO BE CHANGED TO MATCH THE CURRENT URL BECAUSE GITPOD SUCKS AND IT REDIRECTS TO LOCALHOST:5000
         except:
             return "There was an issue adding your task."
@@ -51,11 +51,25 @@ def delete(id): #Passing in id from the url
      try:
         db.session.delete(task_to_delete)
         db.session.commit()
-        return redirect('https://5000-purple-mongoose-i5x1ay3m.ws-us18.gitpod.io/template')  
+        return redirect('https://5000-amaranth-guan-g3tpf7y2.ws-us18.gitpod.io/template')  
      except:
          return "There was a problem deleting your task."
 
+@app.route('/update/<int:id>', methods=["POST", "GET"]) #Making a new page for updating things, and getting the id of the thing we want to update.
+def update(id):
+    task = Todo.query.get_or_404(id)  #Gets the task from the database and sends it to the html code 
 
+
+    if request.method == 'POST':  #Does what we want the button to do when it is pressed, otherwise will just display the webpage.
+        task.content = request.form['content']
+        
+        try:
+            db.session.commit()
+            return redirect('https://5000-amaranth-guan-g3tpf7y2.ws-us18.gitpod.io/template')
+        except:
+            return "There was an issue updating your task."
+    else:
+        return render_template('update.html', task=task) #Task=task pretty much just passes the variable into the html code 
 
 if __name__ == "__main__": #Tells flask to actually run
     app.run(debug=True) #debug=True will display any errors on the webpage

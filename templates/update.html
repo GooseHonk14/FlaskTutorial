@@ -1,0 +1,21 @@
+{% extends 'base.html' %}. <!--Tells us to base this off of base.html   -->
+
+{% block head %}   <!--Our own code will go here and it will build off of base.html with its own styling...-->
+<title>Task Master</title>
+
+{% endblock %}
+
+
+{% block body %} <!--And content! (probably)-->
+<div class="content"> <!--Naming it content to come back later and make it pretty......-->
+    <h1>Update Task</h1> <!--A heading Wowoowwowowow-->
+
+
+    <form action="https://5000-amaranth-guan-g3tpf7y2.ws-us18.gitpod.io/update/{{task.id}}" method="POST"> <!--Making things do things in this link-->
+        <input type="text" name="content" id="content" value="{{task.content}}"> <!--This gives us a text box that we can take data from, id "content" allows us to reference this on a different page, namely python, value "content" allows us to show what the task was in the text box.-->
+        <input type="submit" value="Update Task"> <!--A button, pretty much. The value is what the button will say on it.-->
+    </form>
+
+
+</div>
+{% endblock %}
